@@ -19,10 +19,8 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
 import com.example.xyzreader.data.ItemsContract;
@@ -148,7 +146,7 @@ public class ArticleListActivity extends AppCompatActivity implements
 
                 public void onClick(View view) {
 
-                    ImageView photo = (ImageView) view.findViewById(R.id.thumbnail);
+                    DynamicHeightNetworkImageView  photo = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
                     String transitionName = getString(R.string.transition_photo);
 
                     Intent intent = new Intent(Intent.ACTION_VIEW,
@@ -198,11 +196,11 @@ public class ArticleListActivity extends AppCompatActivity implements
                         + "<br/>" + " by "
                         + mCursor.getString(ArticleLoader.Query.AUTHOR)));
             }
-            Glide
-                    .with(holder.thumbnailView.getContext())
-                    .load(mCursor.getString(ArticleLoader.Query.THUMB_URL))
-                    .override(600, 400)
-                    .into(holder.thumbnailView);
+            holder.thumbnailView.setImageUrl(
+                    mCursor.getString(ArticleLoader.Query.THUMB_URL),
+                    ImageLoaderHelper.getInstance(ArticleListActivity.this).getImageLoader());
+            holder.thumbnailView.setAspectRatio(mCursor.getFloat(ArticleLoader.Query.ASPECT_RATIO));
+
         }
 
         @Override
@@ -212,13 +210,13 @@ public class ArticleListActivity extends AppCompatActivity implements
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView thumbnailView;
+        public DynamicHeightNetworkImageView thumbnailView;
         public TextView titleView;
         public TextView subtitleView;
 
         public ViewHolder(View view) {
             super(view);
-            thumbnailView = (ImageView) view.findViewById(R.id.thumbnail);
+            thumbnailView = (DynamicHeightNetworkImageView) view.findViewById(R.id.thumbnail);
             titleView = (TextView) view.findViewById(R.id.article_title);
             subtitleView = (TextView) view.findViewById(R.id.article_subtitle);
         }

@@ -122,19 +122,13 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
-        app:fabSize="normal"
-        app:elevation="@dimen/fab_elevation"
-        app:pressedTranslationZ="@dimen/fab_press_translation_z"
-        app:borderWidth="0dp"
         android:id="@+id/share_fab"
         android:layout_gravity="bottom|end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_share"
-        android:contentDescription="@string/action_share"
-        android:stateListAnimator="@anim/fab_state_list_anim" />
+        android:contentDescription="@string/action_share" />
 
 </android.support.design.widget.CoordinatorLayout>
 
