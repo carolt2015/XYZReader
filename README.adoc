@@ -1,2 +1,2 @@
  XYZReader 
- A redesigned android app that meets the Material Design guidelines.
+ A redesigned android app that meets the Material Design guidelines. This project was a part of Udacity's Android Developer NanoDegree coursework.
